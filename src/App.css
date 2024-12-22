@@ -1,0 +1,468 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  --blue-dot: #2563eb;
+  --pink-dot: #db2777;
+  --lightblue-dot: #0ea5e9;
+  --green-dot: #10b981;
+  --blue-bg: #eff6ff;
+  --pink-bg: #fdf2f8;
+  --lightblue-bg: #f0f9ff;
+  --green-bg: #ecfdf5;
+  --blue-text: #2563eb;
+  --pink-text: #db2777;
+  --lightblue-text: #0ea5e9;
+  --green-text: #10b981;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: white;
+  border-right: 1px solid #e2e8f0;
+  padding: 16px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  margin-bottom: 24px;
+}
+
+.menu-icon {
+  width: 24px;
+  height: 24px;
+  color: #64748b;
+}
+
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-item {
+  padding: 10px 15px;
+  border-radius: 8px; /* Rounded corners for the highlight */
+  color: #0f172a; /* Consistent text color */
+  font-weight: 400; /* Normal font weight */
+  background-color: transparent; /* No background by default */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.project-item:hover {
+  background-color: #f5f7ff; /* Light hover effect */
+  cursor: pointer;
+}
+
+.project-item.active {
+  background-color: #eef2ff; /* Light blue background for selected state */
+  color: #0f172a; /* Same consistent text color, no boldness */
+  font-weight: 400; /* Keep normal font weight */
+}
+
+.add-project-btn {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 12px;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.add-project-btn:hover {
+  background-color: #eff6ff;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+}
+
+.project-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 24px 0;
+}
+
+.board-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 4px;
+}
+
+.column {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 140px);
+}
+
+.column-header {
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.column.blue .status-badge {
+  background-color: var(--blue-bg);
+}
+.column.pink .status-badge {
+  background-color: var(--pink-bg);
+}
+.column.lightblue .status-badge {
+  background-color: var(--lightblue-bg);
+}
+.column.green .status-badge {
+  background-color: var(--green-bg);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.column.blue .status-dot {
+  background-color: var(--blue-dot);
+}
+.column.pink .status-dot {
+  background-color: var(--pink-dot);
+}
+.column.lightblue .status-dot {
+  background-color: var(--lightblue-dot);
+}
+.column.green .status-dot {
+  background-color: var(--green-dot);
+}
+
+.status-text {
+  color: #0f172a;
+}
+
+.column.blue .status-text {
+  color: var(--blue-text);
+}
+.column.pink .status-text {
+  color: var(--pink-text);
+}
+.column.lightblue .status-text {
+  color: var(--lightblue-text);
+}
+.column.green .status-text {
+  color: var(--green-text);
+}
+
+.tasks-container {
+  flex: 1;
+  overflow-y: auto;
+  margin: 8px -8px;
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.task-card:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.task-card .task-title {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.task-dates {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.date-label {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.date-value {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.column.blue .date-value {
+  background-color: var(--blue-bg);
+  color: var(--blue-text);
+}
+.column.pink .date-value {
+  background-color: var(--pink-bg);
+  color: var(--pink-text);
+}
+.column.lightblue .date-value {
+  background-color: var(--lightblue-bg);
+  color: var(--lightblue-text);
+}
+.column.green .date-value {
+  background-color: var(--green-bg);
+  color: var(--green-text);
+}
+
+.add-new-container {
+  margin: 8px -20px -20px;
+  padding: 12px 20px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.add-new-container.blue {
+  background-color: var(--blue-bg);
+}
+.add-new-container.pink {
+  background-color: var(--pink-bg);
+}
+.add-new-container.lightblue {
+  background-color: var(--lightblue-bg);
+}
+.add-new-container.green {
+  background-color: var(--green-bg);
+}
+
+.add-task-btn {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: opacity 0.2s;
+}
+
+.column.blue .add-task-btn {
+  background-color: var(--blue-bg);
+  color: var(--blue-text);
+}
+.column.pink .add-task-btn {
+  background-color: var(--pink-bg);
+  color: var(--pink-text);
+}
+.column.lightblue .add-task-btn {
+  background-color: var(--lightblue-bg);
+  color: var(--lightblue-text);
+}
+.column.green .add-task-btn {
+  background-color: var(--green-bg);
+  color: var(--green-text);
+}
+
+.add-task-btn:hover {
+  opacity: 0.9;
+}
+
+/* Update error styles */
+.error-message {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.form-group input.error,
+.form-group select.error {
+  border-color: #ef4444;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal {
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.close-button:hover {
+  background-color: #f1f5f9;
+}
+
+.modal form {
+  padding: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+}
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary:hover {
+  background-color: #f1f5f9;
+}
